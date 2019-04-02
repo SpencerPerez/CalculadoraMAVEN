@@ -63,19 +63,22 @@ public class BasicOperationsController {
 
     //Dividir
     @GetMapping("/dividir")
-    public Object dividir(@RequestParam(name = "a", required = true) Object a, @RequestParam(name = "b", required = true) Object b) {
+    public Object dividir(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
         try {
-            if(a instanceof Integer && b instanceof  Integer){
-                return (Integer) a / (Integer) b;
-            } else if(a instanceof Long && b instanceof  Long) {
-                return (Long) a / (Long) b;
-            } else if(a instanceof Float && b instanceof  Float) {
-                return (Float) a / (Float) b;
-            } else if(a instanceof Double && b instanceof  Double) {
-                return (Double) a / (Double) b;
-            }
-        } catch (Exception e) {
-            return 0;
+            return Double.valueOf(a) / Double.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Float.valueOf(a) / Float.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Long.valueOf(a) / Long.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Integer.valueOf(a) / Integer.valueOf(b);
+        } catch (Exception ignored) {
         }
         return 0;
     }
