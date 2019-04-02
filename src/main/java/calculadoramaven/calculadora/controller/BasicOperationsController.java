@@ -6,20 +6,24 @@ import org.springframework.web.bind.annotation.*;
 public class BasicOperationsController {
 
     private int memoria = 0;
+    private double memoriadouble = 0f;
 
     //Suma
     @GetMapping("/sumarint")
     public int sumar(@RequestParam(name = "a", required = true) int a, @RequestParam(name = "b", required = true) int b) {
         return a + b;
     }
+
     @GetMapping("/sumarlong")
     public long sumar(@RequestParam(name = "a", required = true) long a, @RequestParam(name = "b", required = true) long b) {
         return a + b;
     }
+
     @GetMapping("/sumarfloat")
     public float sumar(@RequestParam(name = "a", required = true) float a, @RequestParam(name = "b", required = true) float b) {
         return a + b;
     }
+
     @GetMapping("/sumardouble")
     public double sumar(@RequestParam(name = "a", required = true) double a, @RequestParam(name = "b", required = true) double b) {
         return a + b;
@@ -30,14 +34,17 @@ public class BasicOperationsController {
     public int restar(@RequestParam(name = "a", required = true) int a, @RequestParam(name = "b", required = true) int b) {
         return a - b;
     }
+
     @GetMapping("/restarlong")
     public long restar(@RequestParam(name = "a", required = true) long a, @RequestParam(name = "b", required = true) long b) {
         return a - b;
     }
+
     @GetMapping("/restarfloat")
     public float restar(@RequestParam(name = "a", required = true) float a, @RequestParam(name = "b", required = true) float b) {
         return a - b;
     }
+
     @GetMapping("/restardouble")
     public double restar(@RequestParam(name = "a", required = true) double a, @RequestParam(name = "b", required = true) double b) {
         return a - b;
@@ -48,14 +55,17 @@ public class BasicOperationsController {
     public int multiplicar(@RequestParam(name = "a", required = true) int a, @RequestParam(name = "b", required = true) int b) {
         return a * b;
     }
+
     @GetMapping("/multiplicarlong")
     public long multiplicar(@RequestParam(name = "a", required = true) long a, @RequestParam(name = "b", required = true) long b) {
         return a * b;
     }
+
     @GetMapping("/multiplicarfloat")
     public float multiplicar(@RequestParam(name = "a", required = true) float a, @RequestParam(name = "b", required = true) float b) {
         return a * b;
     }
+
     @GetMapping("/multiplicardouble")
     public double multiplicar(@RequestParam(name = "a", required = true) double a, @RequestParam(name = "b", required = true) double b) {
         return a * b;
@@ -64,6 +74,34 @@ public class BasicOperationsController {
     //Dividir
     @GetMapping("/dividir")
     public Object dividir(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
+        return dividirObject(a, b);
+    }
+
+    @PostMapping("/guardar")
+    public String guardar(@RequestParam(name = "m", required = true) String m) {
+
+
+        try {
+            memoria = Integer.valueOf(m);
+            return "guardado int " + memoria;
+        } catch (Exception ignored) {
+        }
+        try {
+            memoriadouble = Double.valueOf(m);
+            return "guardado double " + memoriadouble;
+        } catch (Exception ignored) {
+        }
+        return "no se guardo nada";
+    }
+
+
+
+    @PostMapping("/dividir")
+    public Object dividirPost(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
+        return dividirObject(a, b);
+    }
+
+    private Object dividirObject(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
         try {
             return Double.valueOf(a) / Double.valueOf(b);
         } catch (Exception ignored) {
@@ -83,12 +121,7 @@ public class BasicOperationsController {
         return 0;
     }
 
-    @PostMapping("/guardar")
-    public int guardar(@RequestParam(name = "m", required = true) int m) {
-        this.memoria = m;
 
-        return this.memoria;
-    }
     @GetMapping("/recuperar")
     public int recuperar() {
         return this.memoria;
