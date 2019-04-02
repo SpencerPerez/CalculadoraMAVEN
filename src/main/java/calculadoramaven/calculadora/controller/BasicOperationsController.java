@@ -121,6 +121,79 @@ public class BasicOperationsController {
         return 0;
     }
 
+    @PostMapping("/multiplicar")
+    public Object multiplicarPost(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
+        return multiplicarObject(a, b);
+    }
+    private Object multiplicarObject(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
+        try {
+            return Double.valueOf(a) * Double.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Float.valueOf(a) * Float.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Long.valueOf(a) * Long.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Integer.valueOf(a) * Integer.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        return 0;
+    }
+
+
+    @PostMapping("/restar")
+    public Object restarPost(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
+        return restarObject(a, b);
+    }
+    private Object restarObject(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
+        try {
+            return Double.valueOf(a) - Double.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Float.valueOf(a) - Float.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Long.valueOf(a) - Long.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Integer.valueOf(a) - Integer.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        return 0;
+    }
+
+    @PostMapping("/sumar")
+    public Object sumarPost(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
+        return sumarObject(a, b);
+    }
+    private Object sumarObject(@RequestParam(name = "a", required = true) String a, @RequestParam(name = "b", required = true) String b) {
+        try {
+            return Double.valueOf(a) + Double.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Float.valueOf(a) + Float.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Long.valueOf(a) + Long.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        try {
+            return Integer.valueOf(a) + Integer.valueOf(b);
+        } catch (Exception ignored) {
+        }
+        return 0;
+    }
+
 
     @GetMapping("/recuperar")
     public int recuperar() {
